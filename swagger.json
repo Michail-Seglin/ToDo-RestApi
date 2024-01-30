@@ -1,0 +1,203 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Task API",
+        "version": "1.0.0",
+        "description": "interface for crud task"
+    },
+    "paths": {
+        "/task": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "to get all tasks",
+                "description": "to get all tasks from collection",
+                "responses": {
+                    "200": {
+                        "description": "success:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "659c376b7da83b49e5624bce",
+                                        "title": "it is title",
+                                        "description": "it is description",
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "404": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "TASK"
+                ],
+                "summary": "create new task",
+                "descriptoin": "create new task in task collection",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ имеет вид:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "659c376b7da83b49e5624bce",
+                                        "title": "it is title",
+                                        "description": "it is description",
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "404": {}
+                }
+            }
+        },
+        "/task/{_id}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "to get all tasks",
+                "description": "to get all tasks from collection",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "659c376b7da83b49e5624bce",
+                                        "title": "it is title",
+                                        "description": "it is description",
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "404": {}
+                }
+            },
+            "put": {
+                "tags": [
+                    "task"
+                ],
+                "summary": "update task",
+                "description": "update task from_id",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ имеет вид:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "6596d9fec17c3693ff760ae7",
+                                        "title": "Javascript",
+                                        "description": "hard",
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "delete task",
+                "description": "delete task from collection",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "659c376b7da83b49e5624bce",
+                                        "title": "it is title",
+                                        "description": "it is description",
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "404": {}
+                }
+            }
+        }
+        
+    }
+}
