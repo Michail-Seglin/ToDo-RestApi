@@ -1,33 +1,33 @@
 const express = require('express');
 const { createTask, getTaskId, updateTask, deleteTask, getAllTask } = require('../service/task.service');
-
+const { buildResponse } = require('../helper/buildResponse')
 const route = express.Router();
 
 
 route.post('/', async (req, res) => {
     try {
         const data = await createTask(req.body);
-        res.send(data);
+        buildResponse(res, data, 200);
     } catch (er) {
-        res.send(er.message)
+        buildResponse(res, er.message, 404);
     }
 })
 
 route.get('/', async (req, res) => {
     try {
         const data = await getAllTask();
-        res.send(data);
-    } catch (error) {
-        res.send(error.message);
+        buildResponse(res, data, 200);
+    } catch (er) {
+        buildResponse(res, er.message, 404);
     }
 })
 
 route.get('/:_id', async (req, res) => {
     try {
         const data = await getTaskId(req.params._id);
-        res.send(data);
+        buildResponse(res, data, 200);
     } catch (er) {
-        res.send(er.message)
+        buildResponse(res, er.message, 404);
     }
 })
 
@@ -35,9 +35,9 @@ route.put('/:_id', async (req, res) => {
     try {
         const { _id } = req.params;
         const task = req.body;
-        res.send(await updateTask(_id, task));
+        buildResponse(res, await updateTask(_id, task), 200);
     } catch (error) {
-        res.send(error.message);
+        buildResponse(res, er.message, 404);
     }
 
 });
@@ -45,9 +45,9 @@ route.put('/:_id', async (req, res) => {
 
 route.delete('/:_id', async (req, res) => {
     try {
-        res.status(200).send(await deleteTask(req.params._id));
+        buildResponse(res, await deleteTask(req.params._id), 200);
     } catch (error) {
-        res.status(404).send(error.message);
+        buildResponse(res, er.message, 404);
     }
 });
 
