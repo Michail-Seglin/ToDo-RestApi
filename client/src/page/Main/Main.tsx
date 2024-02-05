@@ -1,6 +1,6 @@
 import style from './style.module.scss'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function Main() {
     const [task, setTask] = useState({ title: '', description: '' });
@@ -15,24 +15,56 @@ function Main() {
             const data = await axios.post('http://localhost:3000/task/', task);
             console.log(data);
 
-            // setData(list => [...list, data.data]);
+            // setData(prev => [...prev, data.data]);
             setTask({ title: '', description: '' })
-            if (!data.data) throw new Error('error')
 
         } catch (error) {
             alert(error)
         }
     }
+
+    useEffect(() => {
+        const get = async () => {
+            try {
+                const res = await axios.get('http://localhost:3000/task');
+                setData(res.data);
+                console.log('render')
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        get();
+    }, []);
+
+
+
     return (
         <div className={style.wrapper}>
 
             <h1>TODO LIST</h1>
-            <form className={style.header} >
+            <div className={style.header} >
 
                 <input type='text' placeholder='enter note...' name='title' onChange={getData} value={task.title}></input>
                 <input type='text' placeholder='enter description...' name='description' onChange={getData} value={task.description}></input>
                 <button type='submit' onClick={sendData}>Create</button>
-            </form>
+            </div>
+
+            <div className={style.listName}>
+                {
+                    data.map(item => (
+                        <div className={style.wrap}>
+                            <div className={style.item}>
+                                {/* <p className={style.content}>{item.title}</p>
+                                <p className={style.content}>{item.description}</p> */}
+                                <button className={style.update} onClick={() => { setData(item._id) }}></button>
+                                <button className={style.delete} ></button>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+
         </div >
     )
 }

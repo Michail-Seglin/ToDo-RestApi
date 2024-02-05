@@ -52,4 +52,60 @@ $purple_light_color: #C3C1E5;
             cursor: pointer;
         }
     }
+
+    .listName {
+        @include flex(column, center, 15px);
+
+        .wrap {
+            .item {
+                @include flex(row, center, 15px);
+                width: 520px;
+
+                p {
+
+                    &:nth-child(1) {
+                        width: 256px;
+                        color: black;
+                        font: 500 20px Kanit;
+                        text-transform: uppercase
+                    }
+
+                    &:nth-child(2) {
+                        width: 389px;
+                        color: $purple_light_color;
+                        font: 500 20px Kanit;
+                        text-transform: uppercase
+                    }
+
+                }
+
+
+                .update {
+                    background-image: url(./assets/upd.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 25px;
+                    height: 25px;
+                    cursor: grab;
+                    border: none;
+
+                }
+
+                .delete {
+                    background-image: url(./assets/del.svg);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 25px;
+                    height: 25px;
+                    cursor: grab;
+                    border: none;
+
+                }
+            }
+
+
+        }
+
+
+    }
 }
