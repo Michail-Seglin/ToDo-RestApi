@@ -100,6 +100,12 @@ $purple_light_color: #C3C1E5;
                     cursor: grab;
                     border: none;
 
+                    .line {
+                        background-image: url(./assets/line.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        height: 25px;
+                    }
                 }
             }
 
