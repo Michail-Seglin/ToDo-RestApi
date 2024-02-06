@@ -54,64 +54,48 @@ $purple_light_color: #C3C1E5;
     }
 
     .inpTask {
-        @include flex(column, center, 15px);
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
 
-        .wrap {
-            .item {
-                @include flex(row, center, 15px);
-                width: 520px;
-
-                p {
-
-                    &:nth-child(1) {
-                        width: 256px;
-                        color: black;
-                        font: 500 20px Kanit;
-                        text-transform: uppercase
-                    }
-
-                    &:nth-child(2) {
-                        width: 389px;
-                        color: $purple_light_color;
-                        font: 500 20px Kanit;
-                        text-transform: uppercase
-                    }
-
-                }
-
-
-                .imgUpdate {
-                    background-image: url(./assets/upd.svg);
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                    width: 25px;
-                    height: 25px;
-                    cursor: grab;
-                    border: none;
-
-                }
-
-                .imgDelete {
-                    background-image: url(./assets/del.svg);
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                    width: 25px;
-                    height: 25px;
-                    cursor: grab;
-                    border: none;
-
-                    .line {
-                        background-image: url(./assets/line.png);
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                        height: 25px;
-                    }
-                }
-            }
-
-
+        input {
+            @include input_btn(1px solid $purple_color, 5px, 10px 15px);
+            width: 26px;
+            height: 26px;
         }
 
+        h2 {
+            font: 500 20px 'Kanit';
+            color: black;
+        }
 
+        p {
+            font: 500 20px 'Kanit';
+            color: #C3C1E5
+        }
+
+        .imgMain {
+            display: flex;
+            gap: 10px;
+
+            .imgPencil {
+                @include image-block(url(./assets/del.svg));
+            }
+
+            .imgBasket {
+                @include image-block(url(./assets/upd.svg));
+            }
+        }
+    }
+
+    .line {
+        background-image: url(./assets/Line.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 520px;
+        height: 1px;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
