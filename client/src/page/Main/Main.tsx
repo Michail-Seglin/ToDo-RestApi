@@ -5,8 +5,8 @@ import { iTask } from '../../interfaces';
 
 function Main() {
     const [task, setTask] = useState({ title: '', description: '' });
-    const [data, setData] = useState([]);
     const [array, setArray] = useState<iTask[]>([]);
+   
     const getData = (e: any) => {
         setTask({ ...task, [e.target.name]: e.target.value })
     }
@@ -16,7 +16,6 @@ function Main() {
             const data = await axios.post('http://localhost:3000/task/', task);
             console.log(data);
 
-            // setData(prev => [...prev, data.data]);
             setTask({ title: '', description: '' })
 
         } catch (error) {
@@ -27,7 +26,10 @@ function Main() {
 
         const data = await axios.get('http://localhost:3000/task/');
         console.log(data.data);
-        setArray(data.data)
+        const listTaskCheck = data.data.map((el: iTask) => {
+            return { ...el, isCheck: false }
+        })
+        setArray(listTaskCheck);
     }
 
     useEffect(() => {
