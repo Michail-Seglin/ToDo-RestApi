@@ -1,11 +1,12 @@
-import style from './style.module.scss'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import style from './style.module.scss';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { iTask } from '../../interfaces';
 
 function Main() {
     const [task, setTask] = useState({ title: '', description: '' });
     const [data, setData] = useState([]);
-
+    const [array, setArray] = useState<iTask[]>([]);
     const getData = (e: any) => {
         setTask({ ...task, [e.target.name]: e.target.value })
     }
@@ -22,21 +23,16 @@ function Main() {
             alert(error)
         }
     }
+    async function getAllTask() {
+
+        const data = await axios.get('http://localhost:3000/task/');
+        console.log(data.data);
+        setArray(data.data)
+    }
 
     useEffect(() => {
-        const get = async () => {
-            try {
-                const res = await axios.get('http://localhost:3000/task');
-                setData(res.data);
-                console.log('render')
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        get();
-    }, []);
-
-
+        getAllTask()
+    })
 
     return (
         <div className={style.wrapper}>
@@ -49,22 +45,15 @@ function Main() {
                 <button type='submit' onClick={sendData}>Create</button>
             </div>
 
-            <div className={style.listName}>
-                {
-                    data.map(item => (
-                        <div className={style.wrap}>
-                            <div className={style.item}>
-                                {/* <p className={style.content}>{item.title}</p>
-                                <p className={style.content}>{item.description}</p> */}
-                                <button className={style.update} onClick={() => { setData(item._id) }}></button>
-                                <button className={style.delete} ></button>
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
-
-
+            {array.map((el: iTask) => <div className={style.inpTask}>
+                <input type='checkBox'></input>
+                <h2>{el.title}</h2>
+                <p>{el.description}</p>
+                <div className={style.imgMain}>
+                    <div className={style.imgUpdate}></div>
+                    <div className={style.imgDelete}></div>
+                </div>
+            </div>)}
         </div >
     )
 }

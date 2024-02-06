@@ -53,7 +53,7 @@ $purple_light_color: #C3C1E5;
         }
     }
 
-    .listName {
+    .inpTask {
         @include flex(column, center, 15px);
 
         .wrap {
@@ -80,7 +80,7 @@ $purple_light_color: #C3C1E5;
                 }
 
 
-                .update {
+                .imgUpdate {
                     background-image: url(./assets/upd.svg);
                     background-repeat: no-repeat;
                     background-size: contain;
@@ -91,7 +91,7 @@ $purple_light_color: #C3C1E5;
 
                 }
 
-                .delete {
+                .imgDelete {
                     background-image: url(./assets/del.svg);
                     background-repeat: no-repeat;
                     background-size: contain;
