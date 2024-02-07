@@ -33,9 +33,20 @@ function Main() {
     }
 
     useEffect(() => {
-        getAllTask()
+        getAllTask();
     })
 
+    async function CreateTask() {
+        const result = await axios.post(`http://localhost:3000/task`, inp);
+        console.log(result);
+    }
+    
+    async function deleteTask(id: string) {
+        const data = await axios.delete(`http://localhost:3000/task/${id}`);
+        console.log(data);
+        const filtered: iTask[] = array.filter((el: any) => el._id !== id);
+        setArray(filtered);
+    }
     return (
         <div className={style.wrapper}>
 
