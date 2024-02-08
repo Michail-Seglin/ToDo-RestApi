@@ -6,7 +6,7 @@ import { iTask } from '../../interfaces';
 function Main() {
     const [task, setTask] = useState({ title: '', description: '' });
     const [array, setArray] = useState<iTask[]>([]);
-   
+
     const getData = (e: any) => {
         setTask({ ...task, [e.target.name]: e.target.value })
     }
@@ -40,7 +40,13 @@ function Main() {
         const result = await axios.post(`http://localhost:3000/task`, inp);
         console.log(result);
     }
-    
+
+    async function upDataTask() {
+        const data = await axios.put(`http://localhost:3000/task/`);
+        console.log(data);
+    }
+
+   
     async function deleteTask(id: string) {
         const data = await axios.delete(`http://localhost:3000/task/${id}`);
         console.log(data);
@@ -49,25 +55,27 @@ function Main() {
     }
     return (
         <div className={style.wrapper}>
-
             <h1>TODO LIST</h1>
-            <div className={style.header} >
-
-                <input type='text' placeholder='enter note...' name='title' onChange={getData} value={task.title}></input>
-                <input type='text' placeholder='enter description...' name='description' onChange={getData} value={task.description}></input>
-                <button type='submit' onClick={sendData}>Create</button>
+            <div className={style.inpCreat}>
+                <input type="text" name='title' onChange={changeInput} placeholder='Create note...' />
+                <input type="text" name='description' onChange={changeInput} placeholder='Create description note...' />
+                <button onClick={CreateTask}>CREATE</button>
             </div>
 
-            {array.map((el: iTask) => <div className={style.inpTask}>
-                <input type='checkBox'></input>
-                <h2>{el.title}</h2>
-                <p>{el.description}</p>
-                <div className={style.imgMain}>
-                    <div className={style.imgUpdate}></div>
-                    <div className={style.imgDelete}></div>
+            {array.map((el: iTask, index) => <div className={style.inpWrap}>
+                <div className={style.inpTask}>
+                    <input name={String(index)} type="checkbox" ></input>
+                    <h2>{el.title}</h2>
+                    <p>{el.description}</p>
+                    <div className={style.imgMain}>
+                        <button onClick={() => { upDataTask() }} className={style.imgPencil}></button>
+                        <button onClick={() => { deleteTask(el._id) }} className={style.imgBasket}></button>
+                    </div>
                 </div>
-            </div>)}
-        </div >
+                <div className={style.line}></div>
+            </div>
+            )}
+        </div>
     )
 }
 
