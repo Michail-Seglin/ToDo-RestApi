@@ -42,23 +42,35 @@ function Main() {
     }
 
     async function upDataTask() {
-        const data = await axios.put(`http://localhost:3000/task/`);
-        console.log(data);
+        try {
+
+            const data = await axios.put(`http://localhost:3000/task/`);
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+
+        }
     }
 
-   
+
     async function deleteTask(id: string) {
-        const data = await axios.delete(`http://localhost:3000/task/${id}`);
-        console.log(data);
-        const filtered: iTask[] = array.filter((el: any) => el._id !== id);
-        setArray(filtered);
+        try {
+
+            const data = await axios.delete(`http://localhost:3000/task/${id}`);
+            console.log(data);
+            const filtered: iTask[] = array.filter((el: any) => el._id !== id);
+            setArray(filtered);
+        } catch (err) { 
+            console.log(err);
+            
+        }
     }
     return (
         <div className={style.wrapper}>
             <h1>TODO LIST</h1>
             <div className={style.inpCreat}>
-                <input type="text" name='title' onChange={changeInput} placeholder='Create note...' />
-                <input type="text" name='description' onChange={changeInput} placeholder='Create description note...' />
+                <input type="text" name='title' onChange={getData} placeholder='Create note...' />
+                <input type="text" name='description' onChange={getData} placeholder='Create description note...' />
                 <button onClick={CreateTask}>CREATE</button>
             </div>
 
