@@ -37,11 +37,11 @@ function Main() {
     })
 
     async function CreateTask() {
-        const result = await axios.post(`http://localhost:3000/task`, inp);
+        const result = await axios.post(`http://localhost:3000/task`, task);
         console.log(result);
     }
 
-    async function upDataTask() {
+    async function updateTask() {
         try {
 
             const data = await axios.put(`http://localhost:3000/task/`);
@@ -60,9 +60,9 @@ function Main() {
             console.log(data);
             const filtered: iTask[] = array.filter((el: any) => el._id !== id);
             setArray(filtered);
-        } catch (err) { 
+        } catch (err) {
             console.log(err);
-            
+
         }
     }
     return (
@@ -80,7 +80,7 @@ function Main() {
                     <h2>{el.title}</h2>
                     <p>{el.description}</p>
                     <div className={style.imgMain}>
-                        <button onClick={() => { upDataTask() }} className={style.imgPencil}></button>
+                        <button onClick={() => { updateTask() }} className={style.imgPencil}></button>
                         <button onClick={() => { deleteTask(el._id) }} className={style.imgBasket}></button>
                     </div>
                 </div>
