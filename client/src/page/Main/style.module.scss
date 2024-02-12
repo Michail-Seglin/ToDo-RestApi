@@ -9,6 +9,24 @@ $purple_light_color: #C3C1E5;
     gap: $gap;
 }
 
+@mixin input_btn($border, $br, $pad) {
+    display: block;
+    border: $border;
+    border-radius: $br;
+    padding: $pad
+}
+
+@mixin image-block($default) {
+    background-image: $default;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    border: none;
+    background-color: white;
+}
+
 .wrapper {
     @include flex(column, center, 0);
     width: 750px;
