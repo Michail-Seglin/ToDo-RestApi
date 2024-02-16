@@ -4,7 +4,7 @@ import { iTask } from '../interfaces';
 import axios from 'axios';
 
 interface ModalProps {
-    setOpen: boolean;
+    setOpen: (arg:boolean)=>void;
     task: iTask
 }
 
