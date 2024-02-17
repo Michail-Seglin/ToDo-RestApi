@@ -1,8 +1,8 @@
 import style from './style.module.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { iTask } from '../interfaces';
-import Modal from './Modal';
+import { iTask } from '../../interfaces';
+import Modal from '../modal/Modal';
 
 export default function Main() {
     const [inputValues, setInputValues] = useState({ title: '', description: '' });

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from './style.module.scss';
-import { iTask } from '../interfaces';
+import { iTask } from '../../interfaces';
 import axios from 'axios';
 
 interface ModalProps {

@@ -127,40 +127,29 @@ $purple_ligth_color: #C3C1E5;
     }
 }
 
-.modal {
-    @include flex(column, center, 20px);
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 30px;
+$purple_color: #6c63ff;
+$white_color: white;
+$purple_ligth_color: #C3C1E5;
 
+@mixin flex($fd, $ai, $gap) {
+    display: flex;
+    flex-direction: $fd;
+    align-items: $ai;
+    gap: $gap;
+}
 
-    input {
-        @include input_btn(1px solid $purple_color, 5px, 10px 15px);
-        outline: none;
+@mixin input_btn($border, $br, $pad) {
+    display: block;
+    border: $border;
+    border-radius: $br;
+    padding: $pad
+}
 
-        &:nth-child(1) {
-            width: 256px;
-        }
-
-        &:nth-child(2) {
-            width: 389px;
-        }
-
-        &::placeholder {
-            color: $purple_ligth_color;
-        }
-    }
-
-    button {
-        @include input_btn(1px solid $purple_color, 5px, 10px 15px);
-        background-color: $purple_color;
-        color: $white_color;
-        cursor: grab;
-    }
-
-    .btns {
-        @include flex(row, center, 20px);
-        justify-content: space-between;
-    }
+@mixin image-block($default) {
+    background-image: $default;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
